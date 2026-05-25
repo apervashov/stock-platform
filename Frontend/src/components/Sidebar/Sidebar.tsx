@@ -1,11 +1,10 @@
-import * as React from "react";
 import { Link } from "react-router-dom";
-import {FaHome} from "react-icons/fa"
-interface Props {}
-const Sidebar = (props: Props) => {
+import { FaHome } from "react-icons/fa";
+
+const Sidebar = () => {
   return (
-    <nav className="block py-4 px-6 top-0 bottom-0 w-64 bg-white shadow-xl left-0 absolute flex-row flex-nowrap md:z-10 z-9999 transition-all duration-300 ease-in-out transform md:translate-x-0 -translate-x-full">
-      <button className="md:hidden flex items-center justify-center cursor-pointer text-blueGray-700 w-6 h-10 border-l-0 border-r border-t border-b border-solid border-blueGray-100 text-xl leading-none bg-white rounded-r border border-solid border-transparent absolute top-1/2 -right-24-px focus:outline-none z-9998">
+    <nav className="absolute left-0 top-0 bottom-0 z-40 block w-64 flex-row flex-nowrap bg-surface px-6 py-4 shadow-xl transition-all duration-300 ease-in-out md:z-10 md:translate-x-0 -translate-x-full">
+      <button type="button" className="absolute top-1/2 -right-6 flex h-10 w-6 cursor-pointer items-center justify-center rounded-r border border-line bg-surface text-blueGray-700 focus:outline-none focus:ring-2 focus:ring-brandLink md:hidden">
         <i className="fas fa-ellipsis-v"></i>
       </button>
 
@@ -14,28 +13,28 @@ const Sidebar = (props: Props) => {
           <div className="md:flex-col md:min-w-full flex flex-col list-none">
             <Link
               to="company-profile"
-              className="flex md:mix-w-full text-blueGray-500 text-medium uppercase font-bold block pt--1 pb-4 no-underline"
+              className="flex items-center pb-4 font-bold uppercase text-blueGray-500 no-underline transition-colors hover:text-brandLink"
             >
                 <FaHome/>
                 <h6 className="ml-3">Company Profile</h6>  
             </Link>
             <Link
               to="income-statement"
-              className="flex md:mix-w-full text-blueGray-500 text-medium uppercase font-bold block pt--1 pb-4 no-underline"
+              className="flex items-center pb-4 font-bold uppercase text-blueGray-500 no-underline transition-colors hover:text-brandLink"
             >
                 <FaHome/>
                 <h6 className="ml-3">Income Statement</h6>  
             </Link>
             <Link
               to="balance-sheet"
-              className="flex md:mix-w-full text-blueGray-500 text-medium uppercase font-bold block pt--1 pb-4 no-underline"
+              className="flex items-center pb-4 font-bold uppercase text-blueGray-500 no-underline transition-colors hover:text-brandLink"
             >
                 <FaHome/>
                 <h6 className="ml-3">Balance Sheet</h6>  
             </Link>
             <Link
               to="cashflow-statement"
-              className="flex md:mix-w-full text-blueGray-500 text-medium uppercase font-bold block pt--1 pb-4 no-underline"
+              className="flex items-center pb-4 font-bold uppercase text-blueGray-500 no-underline transition-colors hover:text-brandLink"
             >
                 <FaHome/>
                 <h6 className="ml-3">Cashflow Statement</h6>  

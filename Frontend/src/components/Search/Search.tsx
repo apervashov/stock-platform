@@ -1,15 +1,31 @@
-import {  SyntheticEvent, ChangeEvent } from "react";
-interface Props{
-  onClick:(e:SyntheticEvent)=> void;
+import { SyntheticEvent, ChangeEvent } from 'react';
+
+interface Props {
+  onClick: (e: SyntheticEvent) => void;
   search: string | undefined;
-  handleChange:(e: ChangeEvent<HTMLInputElement>) => void;
+  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
-const Search: React.FC<Props> = ({onClick,search,handleChange}: Props): JSX.Element => {
+
+const Search: React.FC<Props> = ({
+  onClick,
+  search,
+  handleChange,
+}: Props): JSX.Element => {
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-6">
-      <input className="flex-1 p-3 border-2 rounded-lg placeholder-black focus:outline-none" value={search} onChange={(e) => handleChange(e)}></input>
-      <button onClick={(e)=>onClick(e)}>Search</button>
+    <div className="mx-auto flex max-w-4xl flex-col gap-4 p-6 sm:flex-row sm:items-stretch">
+      <input
+        type="search"
+        aria-label="Search companies"
+        className="input-field flex-1"
+        value={search}
+        onChange={handleChange}
+        placeholder="Company name or symbol"
+      />
+      <button type="button" onClick={onClick} className="btn-primary shrink-0">
+        Search
+      </button>
     </div>
   );
 };
+
 export default Search;

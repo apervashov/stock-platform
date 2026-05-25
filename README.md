@@ -96,11 +96,6 @@ This is a full-stack portfolio project built using TypeScript, React, Tailwind, 
 - Register, login, logout.
 - You can search, add and delete stocks to/from your portfolio, leave comments about them.
 
-## Screenshots
-
-![Screenshot_1](https://github.com/user-attachments/assets/8412cbbf-9969-4ad6-a269-97d3dd223526)
-![image](https://github.com/user-attachments/assets/2145e4e2-c683-400d-a57a-3d1dc2c73082)
-![image](https://github.com/user-attachments/assets/86724a69-4104-4786-be6c-c0a1d5fa6fcf)
 
 
 

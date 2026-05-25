@@ -1,4 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+
+  body {
+    @apply min-h-screen bg-surfaceCanvas font-sans text-contentPrimary;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-btn bg-lightGreen px-8 py-3 font-bold text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-brandLink focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-btn bg-darkBlue px-8 py-2 font-semibold text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-brandLink focus:ring-offset-2;
+  }
+
+  .input-field {
+    @apply w-full rounded-btn border border-line bg-surface p-3 text-contentPrimary placeholder:text-contentMuted focus:border-brandLink focus:outline-none focus:ring-2 focus:ring-brandLink;
+  }
+
+  .card-surface {
+    @apply flex w-full flex-col items-center justify-between gap-4 rounded-card bg-surfaceMuted p-6 shadow-card md:flex-row;
+  }
+
+  .link-nav {
+    @apply font-medium text-contentPrimary transition-colors hover:text-darkBlue;
+  }
+}
+
+:root {
+  --toastify-color-success: hsl(156.62, 73.33%, 58.82%);
+  --toastify-color-error: #dc2626;
+  --toastify-color-info: hsl(215.02, 98.39%, 51.18%);
+  --toastify-font-family: Poppins, sans-serif;
+  --toastify-border-radius: 0.5rem;
+}

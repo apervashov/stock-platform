@@ -13,6 +13,11 @@ import CompanyDashboard from "../../components/CompanyDashboard/CompanyDashboard
 import RatioList from "../../components/RatioList/RatioList";
 import Table from "../../components/Table/Table";
 import Tile from "../../components/Tile/Tile";
+import CompanyProfile from "../../components/CompanyProfile/CompanyProfile";
+import IncomeStatement from "../../components/IncomeStatement/IncomeStatement";
+import BalanceSheet from "../../components/BalanceSheet/BalanceSheet";
+import CashFlowStatement from "../../components/CashFlowStatement/CashFlowStatement";
+import StockComment from "../../components/StockComment/StockComment";
 import StockCommentForm from "../../components/StockComment/StockCommentForm";
 import StockCommentList from "../../components/StockCommentList/StockCommentList";
 import StockCommentListItem from "../../StockCommentListItem/StockCommentListItem";
@@ -119,6 +124,13 @@ const metricSnapshot: MetricSnapshot = {
   cashPerShare: "$4.12",
 };
 
+const companyProfileMetrics = {
+  marketCapTTM: 2850000000000,
+  currentRatioTTM: 1.07,
+  roeTTM: 1.56,
+  cashPerShareTTM: 4.12,
+};
+
 const metricConfig = [
   {
     label: "Symbol",
@@ -171,6 +183,58 @@ const incomeRows: IncomeRow[] = [
   },
 ];
 
+const mockedIncomeStatements = [
+  {
+    cik: "0000320193-2024",
+    date: "2024",
+    revenue: 383285000000,
+    netIncome: 96995000000,
+    operatingExpenses: 54847000000,
+    costOfRevenue: 214137000000,
+  },
+  {
+    cik: "0000320193-2023",
+    date: "2023",
+    revenue: 394328000000,
+    netIncome: 99803000000,
+    operatingExpenses: 51345000000,
+    costOfRevenue: 223546000000,
+  },
+];
+
+const mockedBalanceSheet = {
+  cashAndCashEquivalents: 29965000000,
+  inventory: 6331000000,
+  otherCurrentAssets: 14695000000,
+  minorityInterest: 0,
+  otherNonCurrentAssets: 64758000000,
+  longTermDebt: 95281000000,
+  otherCurrentLiabilities: 58829000000,
+};
+
+const mockedCashFlows = [
+  {
+    cik: "0000320193-cf-2024",
+    date: "2024",
+    operatingCashFlow: 118254000000,
+    investmentsInPropertyPlantAndEquipment: -9447000000,
+    otherInvestingActivites: -1308000000,
+    netCashUsedProvidedByFinancingActivities: -108488000000,
+    capitalExpenditure: -9447000000,
+    freeCashFlow: 108807000000,
+  },
+  {
+    cik: "0000320193-cf-2023",
+    date: "2023",
+    operatingCashFlow: 110543000000,
+    investmentsInPropertyPlantAndEquipment: -10959000000,
+    otherInvestingActivites: -1608000000,
+    netCashUsedProvidedByFinancingActivities: -108488000000,
+    capitalExpenditure: -10959000000,
+    freeCashFlow: 99584000000,
+  },
+];
+
 const incomeTableConfig = [
   {
     label: "Date",
@@ -200,34 +264,6 @@ const comments: CommentGet[] = [
     title: "Watch buybacks",
     content: "Buybacks continue to support EPS, but revenue growth still needs a catalyst.",
     createdBy: "portfolio-max",
-  },
-];
-
-const routeComponents = [
-  {
-    name: "CompanyProfile",
-    path: "components/CompanyProfile/CompanyProfile.tsx",
-    state: "Mounted in `/company/:ticker/company-profile`; fetches key metrics and comments.",
-  },
-  {
-    name: "IncomeStatement",
-    path: "components/IncomeStatement/IncomeStatement.tsx",
-    state: "Mounted in `/company/:ticker/income-statement`; renders Table with API data.",
-  },
-  {
-    name: "BalanceSheet",
-    path: "components/BalanceSheet/BalanceSheet.tsx",
-    state: "Mounted in `/company/:ticker/balance-sheet`; renders RatioList with API data.",
-  },
-  {
-    name: "CashFlowStatement",
-    path: "components/CashFlowStatement/CashFlowStatement.tsx",
-    state: "Mounted in `/company/:ticker/cashflow-statement`; renders Table with API data.",
-  },
-  {
-    name: "StockComment",
-    path: "components/StockComment/StockComment.tsx",
-    state: "Fetches comments and posts new comments. Its form/list children are shown below with mocks.",
   },
 ];
 
@@ -505,25 +541,52 @@ const DesignGuide = () => {
 
         <ShowcaseSection
           id="routes"
-          title="Route-connected components"
-          description="These components are documented here but not mounted, because they fetch live API data through route context."
+          title="API-backed route components"
+          description="These are the same components used in company routes, mounted here with mock data instead of live API calls."
         >
-          <div className="grid gap-4 lg:grid-cols-2">
-            {routeComponents.map((component) => (
-              <article
-                key={component.name}
-                className="rounded-card border border-line bg-surface p-5 shadow-card"
-              >
-                <h3 className="text-lg font-semibold text-contentPrimary">
-                  {component.name}
-                </h3>
-                <code className="mt-2 block text-sm text-contentSecondary">
-                  {component.path}
-                </code>
-                <p className="mt-3 text-contentSecondary">{component.state}</p>
-              </article>
-            ))}
-          </div>
+          <ShowcaseCard
+            title="CompanyProfile"
+            path="components/CompanyProfile/CompanyProfile.tsx"
+            note="Uses mocked key metrics and mocked comments."
+          >
+            <CompanyProfile
+              ticker="AAPL"
+              mockData={companyProfileMetrics}
+              mockComments={comments}
+            />
+          </ShowcaseCard>
+
+          <ShowcaseCard
+            title="IncomeStatement"
+            path="components/IncomeStatement/IncomeStatement.tsx"
+            note="Uses mocked income statement rows."
+          >
+            <IncomeStatement ticker="AAPL" mockData={mockedIncomeStatements} />
+          </ShowcaseCard>
+
+          <ShowcaseCard
+            title="BalanceSheet"
+            path="components/BalanceSheet/BalanceSheet.tsx"
+            note="Uses a mocked balance sheet snapshot."
+          >
+            <BalanceSheet ticker="AAPL" mockData={mockedBalanceSheet} />
+          </ShowcaseCard>
+
+          <ShowcaseCard
+            title="CashFlowStatement"
+            path="components/CashFlowStatement/CashFlowStatement.tsx"
+            note="Uses mocked cash flow rows."
+          >
+            <CashFlowStatement ticker="AAPL" mockData={mockedCashFlows} />
+          </ShowcaseCard>
+
+          <ShowcaseCard
+            title="StockComment"
+            path="components/StockComment/StockComment.tsx"
+            note="Uses mocked comments and does not call the comments API."
+          >
+            <StockComment stockSymbol="AAPL" mockComments={comments} />
+          </ShowcaseCard>
         </ShowcaseSection>
       </main>
     </div>

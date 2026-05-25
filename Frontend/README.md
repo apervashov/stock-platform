@@ -1,30 +1,51 @@
-# React + TypeScript + Vite
+# Stock Platform — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + TypeScript + Vite client for the portfolio / stock research app.
 
-Currently, two official plugins are available:
+## Scripts
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+npm install
+npm run dev      # development server
+npm run build    # production build
+npm run lint     # ESLint
+npm run preview  # preview production build
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Stack
+
+- React 18, React Router 6
+- TypeScript, Vite
+- Tailwind CSS
+- react-hook-form, yup, axios, react-toastify
+
+## Design System Docs
+
+UI modernization context lives in **[docs/design-system](./docs/design-system/)**:
+
+| File | Purpose |
+|------|---------|
+| [README.md](./docs/design-system/README.md) | Tokens, principles, component inventory, ideas backlog |
+| [CHECKLIST.md](./docs/design-system/CHECKLIST.md) | Phased UI upgrade tasks |
+| [WORKLOG.md](./docs/design-system/WORKLOG.md) | Session log for decisions and progress |
+
+**Live route (WIP):** `/design-guide` — component playground; expand alongside checklist.
+
+## Key Paths
+
+```
+src/
+├── components/     # UI building blocks
+├── Pages/          # Route-level pages
+├── Routes/         # Router config
+├── Context/        # Auth context
+└── Services/       # API clients
+```
+
+## Environment
+
+Configure API base URL via project env pattern (see `api.tsx` and Vite env usage).
+
+## Related
+
+Root project overview: [../README.md](../README.md)
